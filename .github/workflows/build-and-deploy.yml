@@ -1,0 +1,30 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: [ main ]
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Build
+        run: |
+          npm ci --prefix site
+          npm run build --prefix site
+          npm run deploy --prefix site
+
+      - name: Generate App List
+        run: |
+          npm ci --prefix processing
+          node processing
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: site/out

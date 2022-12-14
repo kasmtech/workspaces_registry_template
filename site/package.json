@@ -1,0 +1,26 @@
+{
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build && next export",
+    "deploy": "next build && touch out/.nojekyll",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "file-saver": "^2.0.5",
+    "jszip": "^3.10.1",
+    "next": "13.0.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-select": "^5.6.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.13",
+    "eslint": "8.26.0",
+    "eslint-config-next": "13.0.0",
+    "postcss": "^8.4.18",
+    "tailwindcss": "^3.2.1"
+  }
+}
