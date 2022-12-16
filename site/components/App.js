@@ -8,7 +8,7 @@ function App({ Component, pageProps, app }) {
                     </div>
                     <div className="kasmcard-detail settingPad">
                         <h5 className="text-base">{ app.friendly_name }</h5>
-                        <p className="text-xs opacity-50">{ app.categories[0] }</p>
+                        <p className="text-xs opacity-50">{ app.categories && app.categories[0] || 'Unknown' }</p>
                     </div>
                 </div>
             </div>
