@@ -11,9 +11,8 @@
     "license": "ISC",
     "bugs": {
     },
-    "dependencies": {
+    "devDependencies": {
       "folder-hash": "^4.0.2",
       "glob": "^7.1.6",
-      "ncu": "^0.2.1"
     }
   }
