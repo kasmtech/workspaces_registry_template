@@ -19,9 +19,9 @@ export default function Home({ searchText }) {
   const lowerSearch = searchText && searchText.toLowerCase();
   if (searchText && searchText !== "") {
     filteredapps = filteredapps.filter((i) => {
-      const category = i.categories.filter((i) =>
+      const category = (i.categories && i.categories.length > 0) ? i.categories.filter((i) =>
         i.toLowerCase().includes(lowerSearch)
-      );
+      ) : [];
       return (
         i.name.toLowerCase().includes(lowerSearch) ||
         category.length > 0
