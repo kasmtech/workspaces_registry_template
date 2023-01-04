@@ -1,3 +1,5 @@
+# THIS IS CURRENTLY IN DEVELOPMENT AND NOT READY FOR PRIME TIME YET, WE'LL ANNOUNCE WHEN IT'S INCLUDED IN BUILDS. FEEL FREE TO PLAY WITH IT THOUGH AND GIVE FEEDBACK.
+
 # Kasm Apps
 
 This is a repository of the apps supported by Kasm. The apps list is automatically generated and can be used when creating new workspaces or using the 1 click installer
