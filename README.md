@@ -7,11 +7,21 @@ This is a repository of the apps supported by Kasm. The apps list is automatical
 ## Create your own app store
 
 We have tried to make it as simple as possible for people to create their own app stores that work with Kasm, the easiest way to do that is to follow these steps:
- 1. Fork this repository. You can also clone it, but forking it will make it easier for people to discover your app store.
- 1. Enable workflows in the `Actions` tab.
- 1. Remove the default apps in `/apps/` and add your own.
- 1. Once you have made your first commit, the workflow will run and build your own App Store landing page and generate the apps.json file. Even just making a change to the README will trigger the build, this step is required before you can set up github pages.
- 1. Go to `Settings / Pages` and under `Branch` select `gh-pages` then hit Save.
- 1. Wait a few minutes for the Action to run building your page (you can see the progress in the Actions tab) and then you should be presented with your URL.
- 
- Note: If you want to use a domain / subdomain, you will need to modify `site/next.config.js` and remove the line `basePath: '/kasm-apps',`.
+
+1. Click on "Use this template", select Create a new repository
+1. Select a Repository name, you will need to use this name later in the process as well, then click on the "Create repository from template" button
+1. Click on the actions tab and check whether workflows need enabling, if they do, enable them, otherwise you should be good to go.
+1. Go to `/site/next.config.js` and edit the `env` section with the relevant details. 
+    * name - The name you want to display
+    * description - A short description to display when a store's information button is pressed.
+    * icon - The image to display for your registry. You can upload an image to `/site/public/` and reference that by https://domain.com/image.png or if you aren't using a {sub}domain by referencing it from https://username.github.io/repositoryname/image.png where image.png is the name of the image you uploaded.
+    * listUrl - The link to the JSON. This will follow the same format as the icon above but ends in list.json, for example https://username.github.io/repositoryname/list.json
+    * contactUrl - A link users can use to contact you on.
+If you are using a domain or a subdomain, you need to completely remove the `basePath: 'kasm-app',` line, otherwise change the value to match what you chose for the repository name in step 2.
+1. Upload your apps to the /apps folder
+1. Go to Settings then Pages and select Branch - gh-pages and click Save
+1. Check progress in Actions
+1. Once complete go back to Settings / Pages and you should have a live site. Click on the Visit Site button.
+1. You should now have a working site which includes any apps you added
+
+https://www.loom.com/embed/256fac3d2bbb422b8e779ac1c8244d33
