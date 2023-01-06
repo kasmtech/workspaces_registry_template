@@ -5,7 +5,7 @@ const nextConfig = {
     name: 'Kasm Technologies',
     description: 'The official store for Kasm supported applications.',
     icon: '/img/logo.svg',
-    listUrl: 'https://apps.kasmweb.com/list.json',
+    listUrl: 'https://registry.kasmweb.com/list.json',
     contactUrl: 'https://kasmweb.com/support',
   },
   reactStrictMode: true,
