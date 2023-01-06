@@ -24,4 +24,10 @@ If you are using a domain or a subdomain, you need to completely remove the `bas
 1. Once complete go back to Settings / Pages and you should have a live site. Click on the Visit Site button.
 1. You should now have a working site which includes any apps you added
 
-https://www.loom.com/embed/256fac3d2bbb422b8e779ac1c8244d33
+[![](https://cdn.loom.com/sessions/thumbnails/256fac3d2bbb422b8e779ac1c8244d33-00001.gif)](https://www.loom.com/share/256fac3d2bbb422b8e779ac1c8244d33 "")
+
+## Discovery
+
+The tag below will hopefully make it easier for people to find your App Registry by clicking on [this github search link](https://github.com/search?q=in%3Areadme+sort%3Aupdated+-user%3Akasmtech+%22KASM-REGISTRY-DISCOVERY-IDENTIFIER%22&type=repositories). If you want to make it harder to find your repository for some reason, just remove this section.
+
+KASM-REGISTRY-DISCOVERY-IDENTIFIER
