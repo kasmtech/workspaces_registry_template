@@ -16,6 +16,7 @@ jobs:
         run: |
           npm ci --prefix processing 
           node processing
+          
           npm ci --prefix site
           npm run build --prefix site
           npm run deploy --prefix site
