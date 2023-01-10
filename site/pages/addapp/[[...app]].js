@@ -4,8 +4,34 @@ import { saveAs } from 'file-saver';
 import CreatableSelect from 'react-select/creatable';
 import Select from 'react-select';
 import { useRouter } from 'next/router'
+import allapps from '../../../public/list.json'
 
-export default function AddApp() {
+
+export async function getStaticPaths() {
+  let paths = allapps.apps.map(app => ({
+    params: {
+      app: [btoa(app.name)]
+    }
+  }))
+  paths.push({
+    params: { app: null }
+  })
+  return {
+    paths,
+    fallback: false, // can also be true or 'blocking'
+  }
+}
+
+// `getStaticPaths` requires using `getStaticProps`
+export async function getStaticProps({ params }) {
+  const app = params.app
+  return {
+    // Passed to the page component as props
+    props: { app: app ?? null },
+  }
+}
+
+export default function AddApp({ app = null }) {
 
   function friendlyUrl(url) {
     // make the url lowercase         
@@ -50,7 +76,7 @@ export default function AddApp() {
   const [ext, setExt] = useState('png')
   const [inlineImage, setInlineImage] = useState(null)
 
-  const [application, setApplication] = useState({
+  const defaultState = {
     friendly_name: null,
     image_src: null,
     description: null,
@@ -64,46 +90,52 @@ export default function AddApp() {
     require_gpu: false,
     enabled: true,
     image_type: 'Container',
-  })
+  }
+
+  const [application, setApplication] = useState(defaultState)
 
   const router = useRouter()
-  const { app } = router.query
+  // const { app } = router.query
 
   useEffect(() => {
-    fetch('../../list.json')
-      .then((res) => res.json())
-      .then((apps) => {
-        if (app && app[0]) {
-          const appDetails = apps.apps.find(el => el.name === atob(app[0]))
-          delete appDetails['sha']
-          description.current.value = appDetails.description
-          name.current.value = appDetails.name
-          friendly_name.current.value = appDetails.friendly_name
-          if (appDetails.categories) {
-            let catMap = []
-            appDetails.categories.map((e) => catMap.push({
-              label: e,
-              value: e,
-            }))
-            setCategories(catMap)
-          }
-          if (appDetails.architecture) {
-            let archMap = []
-            appDetails.architecture.map((e) => archMap.push({
-              label: e,
-              value: e,
-            }))
-            setArchitecture(archMap)
-          }
+    if(app === null) {
+      description.current.value = ''
+      name.current.value = ''
+      friendly_name.current.value = ''
+      setCategories(null)
+      setArchitecture(null)
+      setApplication(defaultState)
+    }
+    else if (app && app[0]) {
+      const appDetails = allapps.apps.find(el => el.name === atob(app[0]))
+      delete appDetails['sha']
+      description.current.value = appDetails.description
+      name.current.value = appDetails.name
+      friendly_name.current.value = appDetails.friendly_name
+      if (appDetails.categories) {
+        let catMap = []
+        appDetails.categories.map((e) => catMap.push({
+          label: e,
+          value: e,
+        }))
+        setCategories(catMap)
+      }
+      if (appDetails.architecture) {
+        let archMap = []
+        appDetails.architecture.map((e) => archMap.push({
+          label: e,
+          value: e,
+        }))
+        setArchitecture(archMap)
+      }
 
-          setInlineImage('../../icons/' + appDetails.image_src)
+      setInlineImage('../../icons/' + appDetails.image_src)
 
-          setApplication({
-            ...application,
-            ...appDetails
-          })
-        }
+      setApplication({
+        ...application,
+        ...appDetails
       })
+    }
   }, [app])
 
   const displayApplication = () => {
