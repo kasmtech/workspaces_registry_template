@@ -4,6 +4,8 @@ dist
 target
 packages/next/wasm/@next
 out
+site/public/icons
+site/public/list.json
 
 # dependencies
 node_modules

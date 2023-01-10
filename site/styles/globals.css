@@ -10,6 +10,10 @@ body {
     font-weight: 400;
 }
 
+.notification {
+  box-shadow: none!important;
+}
+
 .bg-bubbles {
     position: absolute;
     top: 0;
