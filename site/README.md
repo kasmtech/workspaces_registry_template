@@ -32,3 +32,17 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## New schema version
+
+If a new schema version comes out, this is what you will need to do.
+
+1. Create a new branch with the schema version as the branch name (for example, 1.1)
+1. Open `.github/workflows/build-and-deploy.yml` and change the on: push: branches: to match the new version:
+```
+on:
+  push:
+    branches: [ 1.1 ]
+```
+then at the bottom of the file change the `target-folder` to match the version `target-folder: "1.1"`
+1. Open `site/next.config.js` and change `env.schema` to match the version number, add the version number to the `env.listUrl` and append the version number to the `basePath` as well.

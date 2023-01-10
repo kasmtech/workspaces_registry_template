@@ -1,4 +1,4 @@
-name: Node.js CI
+name: Build 1.0
 
 on:
   push:
@@ -29,3 +29,4 @@ jobs:
         with:
           branch: gh-pages
           folder: public
+          target-folder: "1.0"
