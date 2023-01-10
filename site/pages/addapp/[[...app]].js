@@ -31,7 +31,7 @@ export async function getStaticProps({ params }) {
   }
 }
 
-export default function AddApp({ app = null }) {
+export default function AddApp({ app }) {
 
   function friendlyUrl(url) {
     // make the url lowercase         
@@ -98,12 +98,14 @@ export default function AddApp({ app = null }) {
   // const { app } = router.query
 
   useEffect(() => {
+    console.log(app)
     if(app === null) {
       description.current.value = ''
       name.current.value = ''
       friendly_name.current.value = ''
       setCategories(null)
       setArchitecture(null)
+      setIcon(null)
       setApplication(defaultState)
     }
     else if (app && app[0]) {
@@ -211,6 +213,7 @@ export default function AddApp({ app = null }) {
         file: event.target.files[0]
       })
       setExt(event.target.value.substr(event.target.value.lastIndexOf('.') + 1))
+      setInlineImage(null)
       // return
     }
 
@@ -257,6 +260,7 @@ export default function AddApp({ app = null }) {
 
             <label className='mb-2 font-medium'>Categories</label>
             <CreatableSelect
+              instanceId="1"
               name="categories"
               isMulti
               options={options}
@@ -276,6 +280,7 @@ export default function AddApp({ app = null }) {
 
             <label className='mb-2 font-medium'>Architecture</label>
             <Select
+              instanceId="2"
               name="architecture"
               isMulti
               options={[
@@ -330,7 +335,8 @@ function App({ app, icon, inlineImage }) {
     <div className={"rounded-xl group w-full shadow max-w-xs relative overflow-hidden h-[100px] border border-solid flex flex-col justify-between bg-slate-300 border-slate-400/50"}>
       <div className={"absolute top-0 left-0 right-0 h-[200px] transition-all" + (showDescription ? ' -translate-y-1/2' : '')}>
         <div onClick={() => setShowDescription(true)} className={"h-[100px] p-4 relative overflow-hidden cursor-pointer"}>
-          <img className="h-[90px] group-hover:scale-150 transition-all absolute left-2 top-1" src={app.image_src} onError={(e) => e.target.src = inlineImage} alt={app.friendly_name} />
+          <img className="h-[90px] group-hover:scale-150 transition-all absolute left-2 top-1" src={app.image_src} onError={(e) => { 
+            if ( inlineImage !== null) { e.target.src = inlineImage }}} alt={app.friendly_name} />
           <div className="flex-col pl-28">
             <div className="font-bold">{app.friendly_name || 'Friendly Name'}</div>
             <div className="text-xs mb-2 flex gap-2">{process.env.name || 'Unknown'} <span>{official()}</span></div>
