@@ -3,8 +3,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && next export",
-    "deploy": "next build && touch out/.nojekyll",
+    "build": "next build && next export -o ../public/",
+    "deploy": "next build && next export -o ../public/ && touch ../public/.nojekyll",
     "start": "next start",
     "lint": "next lint"
   },

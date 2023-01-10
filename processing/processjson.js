@@ -3,7 +3,7 @@ const glob = require("glob");
 const { hashElement } = require("folder-hash");
 const nextConfig = require("../site/next.config.js")
 
-var dir = "./site/out";
+var dir = "./public";
 
 if (!fs.existsSync(dir)) {
 	fs.mkdirSync(dir);

@@ -16,9 +16,7 @@ jobs:
         run: |
           npm ci --prefix processing 
           node processing
-          
           npm ci --prefix site
-          npm run build --prefix site
           npm run deploy --prefix site
 
       - name: Generate App List # Have to run it again because the deploy wipes the file and folders out
