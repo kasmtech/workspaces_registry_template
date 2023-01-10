@@ -29,4 +29,4 @@ jobs:
         with:
           branch: gh-pages
           folder: public
-          target-folder: "1.0"
+          force: false
