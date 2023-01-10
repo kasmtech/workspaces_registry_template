@@ -26,6 +26,14 @@ If you are using a domain or a subdomain, you need to completely remove the `bas
 
 [![](https://cdn.loom.com/sessions/thumbnails/256fac3d2bbb422b8e779ac1c8244d33-00001.gif)](https://www.loom.com/share/256fac3d2bbb422b8e779ac1c8244d33 "")
 
+## New schema version
+
+If a new schema version comes out, this is what you will need to do.
+
+1. Create a new branch with the schema version as the branch name (for example, 1.1)
+1. Open `.github/workflows/build-and-deploy.yml` and change the `on.push.branches` to match the new version `branches: [ 1.1 ]` then at the bottom of the file change the `target-folder` to match the version `target-folder: "1.1"`
+1. Open `site/next.config.js` and change `env.schema` to match the version number, add the version number to the `env.listUrl` and append the version number to the `basePath` as well.
+
 ## Discovery
 
 The tag below will hopefully make it easier for people to find your App Registry by clicking on [this github search link](https://github.com/search?q=in%3Areadme+sort%3Aupdated+-user%3Akasmtech+%22KASM-REGISTRY-DISCOVERY-IDENTIFIER%22&type=repositories). If you want to make it harder to find your repository for some reason, just remove this section.
