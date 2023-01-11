@@ -25,6 +25,11 @@ jobs:
           npm ci --prefix processing
           node processing
 
+      - name: Move to branch
+        if: github.ref != 'refs/heads/develop'
+        run: |
+          mv public public/${{ github.head_ref || github.ref_name }}
+
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
