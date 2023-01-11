@@ -28,7 +28,9 @@ jobs:
       - name: Move to branch
         if: github.ref != 'refs/heads/develop'
         run: |
-          mv public public/${{ github.head_ref || github.ref_name }}
+          mv public ${{ github.head_ref || github.ref_name }}
+          mkdir public
+          mv ${{ github.head_ref || github.ref_name }} public
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
