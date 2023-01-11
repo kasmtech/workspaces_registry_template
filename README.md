@@ -9,7 +9,7 @@ This is a repository of the apps supported by Kasm. The apps list is automatical
 We have tried to make it as simple as possible for people to create their own app stores that work with Kasm, the easiest way to do that is to follow these steps:
 
 1. Click on "Use this template", select Create a new repository
-1. Select a Repository name, you will need to use this name later in the process as well, then click on the "Create repository from template" button
+1. Select a Repository name, you will need to use this name later in the process as well, tick the "Include all branches" checkbox, then click on the "Create repository from template" button
 1. Click on the actions tab and check whether workflows need enabling, if they do, enable them, otherwise you should be good to go.
 1. Go to `/site/next.config.js` and edit the `env` section with the relevant details. 
     * name - The name you want to display
@@ -31,7 +31,7 @@ If you are using a domain or a subdomain, you need to completely remove the `bas
 If a new schema version comes out, this is what you will need to do.
 
 1. Create a new branch with the schema version as the branch name (for example, 1.1)
-1. Open `.github/workflows/build-and-deploy.yml` and change the `on.push.branches` to match the new version `branches: [ 1.1 ]` then at the bottom of the file change the `target-folder` to match the version `target-folder: "1.1"`
+1. Open `site/package.json` and append the version to the output directory `"deploy": "next build && next export -o ../public/1.1/ && touch ../public/.nojekyll",`. It should NOT be added to the second one (`touch ../public/.nojekyll"`) as the .nojekyll needs to be in the root to work
 1. Open `site/next.config.js` and change `env.schema` to match the version number, add the version number to the `env.listUrl` and append the version number to the `basePath` as well.
 
 ## Discovery

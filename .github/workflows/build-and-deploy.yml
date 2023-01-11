@@ -1,8 +1,9 @@
-name: Build 1.0
+name: Build
 
 on:
   push:
-    branches: [ develop ]
+    branches-ignore:
+      - 'gh-pages'
 permissions:
   contents: write
 jobs:
