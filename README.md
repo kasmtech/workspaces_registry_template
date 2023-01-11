@@ -31,8 +31,6 @@ If you are using a domain or a subdomain, you need to completely remove the `bas
 If a new schema version comes out, this is what you will need to do.
 
 1. Create a new branch with the schema version as the branch name (for example, 1.1)
-1. Open `site/package.json` and append the version to the output directory `"deploy": "next build && next export -o ../public/1.1/ && touch ../public/.nojekyll",`. It should NOT be added to the second one (`touch ../public/.nojekyll"`) as the .nojekyll needs to be in the root to work
-1. Open `processing/processjson.js` and append the version number to the `dir` variable on line 6 `var dir = "./public/1.1";`
 1. Open `site/next.config.js` and change `env.schema` to match the version number, add the version number to the `env.listUrl` and append the version number to the `basePath` as well.
 
 ## Discovery
