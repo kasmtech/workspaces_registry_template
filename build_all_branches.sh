@@ -3,10 +3,10 @@
 DEFAULT=$(git remote show origin | sed -n '/HEAD branch/s/.*: //p')
 
 mkdir base
-cat > base/_redirects << EOF
-/ /$DEFAULT/ 301
-/index.html /$DEFAULT/index.html 301
+cat > base/index.html << EOF
+<meta http-equiv="refresh" content="0; url=./$DEFAULT/">
 EOF
+touch base/.nojekyll
 
 # Generating documentation for each other branch in a subdirectory
 for BRANCH in $(git branch --remotes --format '%(refname:lstrip=3)' | grep -Ev '^(HEAD|develop|gh-pages)$'); do
