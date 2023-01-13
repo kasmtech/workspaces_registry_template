@@ -14,10 +14,10 @@ We have tried to make it as simple as possible for people to create their own ap
 1. Go to `/site/next.config.js` and edit the `env` section with the relevant details. 
     * name - The name you want to display
     * description - A short description to display when a store's information button is pressed.
-    * icon - The image to display for your registry. You can upload an image to `/site/public/` and reference that by https://domain.com/image.png or if you aren't using a {sub}domain by referencing it from https://username.github.io/repositoryname/image.png where image.png is the name of the image you uploaded.
-    * listUrl - The link to the JSON. This will follow the same format as the icon above but ends in list.json, for example https://username.github.io/repositoryname/list.json
+    * icon - The image to display for your registry. You can upload an image to `/site/public/` and reference that by https://domain.com/1.0/image.png or if you aren't using a {sub}domain by referencing it from https://username.github.io/repositoryname/1.0/image.png where image.png is the name of the image you uploaded.
+    * listUrl - The link to the root of your site. For example https://username.github.io/repositoryname/ it should always include a trailing slash.
     * contactUrl - A link users can use to contact you on.
-If you are using a domain or a subdomain, you need to completely remove the `basePath: 'kasm-app',` line, otherwise change the value to match what you chose for the repository name in step 2.
+If you are using a domain or a subdomain, your basePath will just be the current version number `basePath: '/1.0',`, otherwise change the value to include what you chose for the repository name in step 2 `basePath: '/repositoryname/1.0',`.
 1. Upload your apps to the /apps folder
 1. Go to Settings then Pages and select Branch - gh-pages and click Save
 1. Check progress in Actions
@@ -31,7 +31,7 @@ If you are using a domain or a subdomain, you need to completely remove the `bas
 If a new schema version comes out, this is what you will need to do.
 
 1. Create a new branch with the schema version as the branch name (for example, 1.1)
-1. Open `site/next.config.js` and change `env.schema` to match the version number, add the version number to the `env.listUrl` and append the version number to the `basePath` as well.
+1. Open `site/next.config.js` and change the `basePath` to include the version number as well.
 
 ## Discovery
 
