@@ -54,7 +54,6 @@ glob("**/app.json", async function (err, files) {
 	let json = {
 		name: nextConfig.env.name || 'Unknown store',
 		appcount: apptotal,
-		schema_version: nextConfig.env.schema || '1.0',
 		icon: nextConfig.env.icon || null,
 		description: nextConfig.env.description || null,
 		list_url: nextConfig.env.listUrl || null,
