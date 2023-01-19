@@ -1,12 +1,12 @@
 # THIS IS CURRENTLY IN DEVELOPMENT AND NOT READY FOR PRIME TIME YET, WE'LL ANNOUNCE WHEN IT'S INCLUDED IN BUILDS. FEEL FREE TO PLAY WITH IT THOUGH AND GIVE FEEDBACK.
 
-# Kasm Apps
+# Kasm Workspaces
 
-This is a repository of the apps supported by Kasm. The apps list is automatically generated and can be used when creating new workspaces or using the 1 click installer
+This is a repository of the workspaces supported by Kasm. The workspaces list is automatically generated and can be used when creating new workspaces or using the 1 click installer
 
-## Create your own app store
+## Create your own workspace registry
 
-We have tried to make it as simple as possible for people to create their own app stores that work with Kasm, the easiest way to do that is to follow these steps:
+We have tried to make it as simple as possible for people to create their own registries that work with Kasm, the easiest way to do that is to follow these steps:
 
 1. Click on "Use this template", select Create a new repository
 1. Select a Repository name, you will need to use this name later in the process as well, tick the "Include all branches" checkbox, then click on the "Create repository from template" button
@@ -18,11 +18,11 @@ We have tried to make it as simple as possible for people to create their own ap
     * listUrl - The link to the root of your site. For example https://username.github.io/repositoryname/ it should always include a trailing slash.
     * contactUrl - A link users can use to contact you on.
 If you are using a domain or a subdomain, your basePath will just be the current version number `basePath: '/1.0',`, otherwise change the value to include what you chose for the repository name in step 2 `basePath: '/repositoryname/1.0',`.
-1. Upload your apps to the /apps folder
+1. Upload your workspaces to the /workspaces folder
 1. Go to Settings then Pages and select Branch - gh-pages and click Save
 1. Check progress in Actions
 1. Once complete go back to Settings / Pages and you should have a live site. Click on the Visit Site button.
-1. You should now have a working site which includes any apps you added
+1. You should now have a working site which includes any workspaces you added
 
 [![](https://cdn.loom.com/sessions/thumbnails/256fac3d2bbb422b8e779ac1c8244d33-00001.gif)](https://www.loom.com/share/256fac3d2bbb422b8e779ac1c8244d33 "")
 
@@ -35,6 +35,6 @@ If a new schema version comes out, this is what you will need to do.
 
 ## Discovery
 
-The tag below will hopefully make it easier for people to find your App Registry by clicking on [this github search link](https://github.com/search?q=in%3Areadme+sort%3Aupdated+-user%3Akasmtech+%22KASM-REGISTRY-DISCOVERY-IDENTIFIER%22&type=repositories). If you want to make it harder to find your repository for some reason, just remove this section.
+The tag below will hopefully make it easier for people to find your Workspace Registry by clicking on [this github search link](https://github.com/search?q=in%3Areadme+sort%3Aupdated+-user%3Akasmtech+%22KASM-REGISTRY-DISCOVERY-IDENTIFIER%22&type=repositories). If you want to make it harder to find your repository for some reason, just remove this section.
 
 KASM-REGISTRY-DISCOVERY-IDENTIFIER

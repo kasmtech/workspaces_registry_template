@@ -1,24 +1,24 @@
 import { useState, useEffect } from 'react'
 import Head from 'next/head'
-import App from '../components/App'
+import Workspace from '../components/Workspace'
 import styles from '../styles/Home.module.css'
 
 export default function Home({ searchText }) {
 
-  const [apps, setApps] = useState(null)
+  const [workspaces, setWorkspaces] = useState(null)
 
   useEffect(() => {
     fetch('list.json')
       .then((res) => res.json())
-      .then((apps) => {
-        setApps(apps)
+      .then((workspaces) => {
+        setWorkspaces(workspaces)
       })
   }, [])
 
-  let filteredapps = apps && apps.apps && apps.apps.length > 0 ? [...apps.apps] : [];
+  let filteredworkspaces = workspaces && workspaces.workspaces && workspaces.workspaces.length > 0 ? [...workspaces.workspaces] : [];
   const lowerSearch = searchText && searchText.toLowerCase();
   if (searchText && searchText !== "") {
-    filteredapps = filteredapps.filter((i) => {
+    filteredworkspaces = filteredworkspaces.filter((i) => {
       const category = (i.categories && i.categories.length > 0) ? i.categories.filter((i) =>
         i.toLowerCase().includes(lowerSearch)
       ) : [];
@@ -33,20 +33,20 @@ export default function Home({ searchText }) {
   return (
     <div className="">
       <Head>
-        <title>Kasm Apps</title>
-        <meta name="description" content="List of apps for Kasm Webspaces" />
+        <title>Kasm Workspaces</title>
+        <meta name="description" content="List of workspaces for Kasm Webspaces" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
 
       <main className="p-20">
-        <h1 className='flex text-2xl justify-center mb-10'>Applications: <span className=''>{apps && apps.appcount}</span></h1>
+        <h1 className='flex text-2xl justify-center mb-10'>Workspaces: <span className=''>{workspaces && workspaces.workspacecount}</span></h1>
         <div className="flex flex-wrap gap-1 justify-center">
-        {filteredapps && filteredapps.length > 0 && filteredapps.map(function (app, i) {
-            return <App key={app.sha} app={app} />
+        {filteredworkspaces && filteredworkspaces.length > 0 && filteredworkspaces.map(function (workspace, i) {
+            return <Workspace key={workspace.sha} workspace={workspace} />
           })}
-          {filteredapps && filteredapps.length === 0 && (
-            <p>No applications found {searchText !== '' && ('matching "' + searchText + '"')}</p>
+          {filteredworkspaces && filteredworkspaces.length === 0 && (
+            <p>No workspaces found {searchText !== '' && ('matching "' + searchText + '"')}</p>
           )}
         </div>
 

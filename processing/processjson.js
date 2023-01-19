@@ -12,7 +12,7 @@ if (!fs.existsSync(dir + "/icons")) {
 	fs.mkdirSync(dir + "/icons");
 }
 
-glob("**/app.json", async function (err, files) {
+glob("**/workspace.json", async function (err, files) {
 	if (err) {
 		console.log(
 			"cannot read the folder, something goes wrong with glob",
@@ -20,8 +20,8 @@ glob("**/app.json", async function (err, files) {
 		);
 	}
 
-	let apptotal = files.length;
-	let apps = [];
+	let workspacetotal = files.length;
+	let workspaces = [];
 	let promises = [];
 
 	const options = {
@@ -32,7 +32,7 @@ glob("**/app.json", async function (err, files) {
 	for (const file of files) {
 		//files.forEach(async function(file) {
 
-		let folder = file.replace("/app.json", "");
+		let folder = file.replace("/workspace.json", "");
 
 		let hash = await hashElement(folder, options);
 		let filedata = fs.readFileSync(file);
@@ -40,7 +40,7 @@ glob("**/app.json", async function (err, files) {
 		let parsed = JSON.parse(filedata);
 		parsed.sha = hash.hash;
 		console.log(parsed.name + ' added')
-		apps.push(parsed);
+		workspaces.push(parsed);
 
 		if (fs.existsSync(folder + "/" + parsed.image_src)) {
 			let imagedata = fs.readFileSync(folder + "/" + parsed.image_src);
@@ -53,13 +53,13 @@ glob("**/app.json", async function (err, files) {
 
 	let json = {
 		name: nextConfig.env.name || 'Unknown store',
-		appcount: apptotal,
+		workspacecount: workspacetotal,
 		icon: nextConfig.env.icon || null,
 		description: nextConfig.env.description || null,
 		list_url: nextConfig.env.listUrl || null,
 		contact_url: nextConfig.env.contactUrl || null,
 		modified: Date.now(),
-		apps: apps,
+		workspaces: workspaces,
 	};
 
 	let data = JSON.stringify(json);
