@@ -48,8 +48,8 @@ export default function New({ workspace }) {
     image_src: null,
     description: null,
     name: null,
-    cores: 1,
-    memory: 1024,
+    cores: 2,
+    memory: 2768,
     gpu_count: 0,
     cpu_allocation_method: "Inherit",
     docker_registry: "https://index.docker.io/v1/",
@@ -59,13 +59,12 @@ export default function New({ workspace }) {
     image_type: 'Container',
   }
 
-  const [workspace, setWorkspace] = useState(defaultState)
+  const [combined, setCombined] = useState(defaultState)
 
   const router = useRouter()
   // const { workspace } = router.query
 
   useEffect(() => {
-    console.log(workspace)
     if(workspace === null) {
       description.current.value = ''
       name.current.value = ''
@@ -73,7 +72,7 @@ export default function New({ workspace }) {
       setCategories(null)
       setArchitecture(null)
       setIcon(null)
-      setWorkspace(defaultState)
+      setCombined(defaultState)
     }
     else if (workspace && workspace[0]) {
       const workspaceDetails = allworkspaces.workspaces.find(el => el.name === atob(workspace[0]))
@@ -100,8 +99,8 @@ export default function New({ workspace }) {
 
       setInlineImage('../../icons/' + workspaceDetails.image_src)
 
-      setWorkspace({
-        ...workspace,
+      setCombined({
+        ...combined,
         ...workspaceDetails
       })
     }
@@ -109,8 +108,8 @@ export default function New({ workspace }) {
 
   const displayWorkspace = () => {
     return {
-      ...workspace,
-      // categories: JSON.stringify(workspace.categories)
+      ...combined,
+      // categories: JSON.stringify(combined.categories)
     }
   }
 
@@ -130,21 +129,21 @@ export default function New({ workspace }) {
   }
 
   useEffect(() => {
-    if (workspace && workspace.friendly_name) {
+    if (combined && combined.friendly_name) {
       const updateWorkspace = {
-        ...workspace
+        ...combined
       }
       updateWorkspace.image_src = friendlyUrl(updateWorkspace.friendly_name) + '.' + ext
-      setWorkspace(updateWorkspace)
+      setCombined(updateWorkspace)
     }
   }, [ext])
 
   const updateCategories = (items) => {
     const updateWorkspace = {
-      ...workspace
+      ...combined
     }
     updateWorkspace.categories = items.map(cat => cat.value)
-    setWorkspace(updateWorkspace)
+    setCombined(updateWorkspace)
     let catMap = []
     updateWorkspace.categories.map((e) => catMap.push({
       label: e,
@@ -155,10 +154,10 @@ export default function New({ workspace }) {
 
   const updateArchitecture = (items) => {
     const updateWorkspace = {
-      ...workspace
+      ...combined
     }
     updateWorkspace.architecture = items.map(arch => arch.value)
-    setWorkspace(updateWorkspace)
+    setCombined(updateWorkspace)
     let archMap = []
     updateWorkspace.architecture.map((e) => archMap.push({
       label: e,
@@ -184,25 +183,25 @@ export default function New({ workspace }) {
   const downloadZip = () => {
     var JSZip = require("jszip");
     const zip = new JSZip()
-    const folder = zip.folder(workspace.friendly_name)
-    folder.file('workspace.json', JSON.stringify(workspace, null, 2))
+    const folder = zip.folder(combined.friendly_name)
+    folder.file('workspace.json', JSON.stringify(combined, null, 2))
     if (icon) {
-      folder.file(workspace.image_src, icon.file)
+      folder.file(combined.image_src, icon.file)
     }
     else if (inlineImage) {
       const promise = fetch(inlineImage).then(response => response.blob())
-      folder.file(workspace.image_src, promise)
+      folder.file(combined.image_src, promise)
     }
     zip.generateAsync({ type: "blob" })
       .then(function (content) {
         // Force down of the Zip file
-        saveAs(content, friendlyUrl(workspace.friendly_name) + '.zip');
+        saveAs(content, friendlyUrl(combined.friendly_name) + '.zip');
       });
   }
 
   const handleChange = (event) => {
     const updateWorkspace = {
-      ...workspace
+      ...combined
     }
     updateWorkspace[event.target.name] = event.target.value
     if (event.target.name === 'icon') {
@@ -220,7 +219,7 @@ export default function New({ workspace }) {
       updateWorkspace.image_src = friendlyUrl(updateWorkspace.friendly_name) + '.' + ext
     }
 
-    setWorkspace(updateWorkspace)
+    setCombined(updateWorkspace)
   }
 
   const options = [
@@ -247,7 +246,7 @@ export default function New({ workspace }) {
         <div className='w-full lg:w-1/2 p-16 bg-slate-300'>
           <h1 className='text-2xl font-medium mb-2'>Add Workspace</h1>
           <div className='flex flex-col'>
-          <p className='mb-8 opacity-70'>This page is designed to allow admins to generate the JSON they need to upload to the "workspaces" directory. It also allows end users to see what settings are needed if they want to manually copy them into a new workspace.</p>
+            <p className='mb-8 opacity-70'>This page is designed to allow admins to generate the JSON they need to upload to the "workspaces" directory. It also allows end users to see what settings are needed if they want to manually copy them into a new workspace.</p>
 
             <label className='mb-2 font-medium'>Icon</label>
             <input type="file" name="icon" onChange={handleChange} className='mb-2 p-2 rounded-lg bg-slate-100 border border-solid border-slate-400' />
@@ -295,7 +294,7 @@ export default function New({ workspace }) {
           </div>
         </div>
         <div className='w-full lg:w-1/2 p-16 bg-slate-100'>
-          <Workspace workspace={workspace} icon={icon} inlineImage={inlineImage} />
+          <Workspace workspace={combined} icon={icon} inlineImage={inlineImage} />
           <pre className='my-8 overflow-y-auto text-xs'>{JSON.stringify(displayWorkspace(), null, 2)}</pre>
           <button onClick={downloadZip} className='p-4 relative z-10 px-5 bg-cyan-700 border-t border-white/20 border-solid hover:bg-slate-900 transition m-2 rounded items-center text-white/70 flex cursor-pointer'>Download</button>
         </div>
