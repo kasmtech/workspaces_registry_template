@@ -7,11 +7,11 @@ import { NotificationContainer } from 'react-notifications';
 
 export default function Layout({ children, searchText, changeSearch }) {
   return (
-    <>
+    <div className='flex flex-col min-h-screen'>
       <Header searchText={searchText} changeSearch={changeSearch} />
-      <main>{children}</main>
+      <main className="grow">{children}</main>
       <Footer />
       <NotificationContainer/>
-    </>
+    </div>
   )
 }

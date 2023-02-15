@@ -5,8 +5,8 @@
 @tailwind utilities;
 
 body {
-    @apply bg-gradient-to-tr from-slate-500 to-slate-300 min-h-[100vh] text-slate-700;
-    font-family: 'Roboto', sans-serif;
+    @apply bg-gradient-to-tr from-slate-300 to-slate-300 min-h-screen text-slate-700;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     font-weight: 400;
 }
 

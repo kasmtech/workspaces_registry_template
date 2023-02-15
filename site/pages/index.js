@@ -39,8 +39,8 @@ export default function Home({ searchText }) {
       </Head>
 
 
-      <main className="p-20">
-        <h1 className='flex text-2xl justify-center mb-10'>Workspaces: <span className=''>{workspaces && workspaces.workspacecount}</span></h1>
+      <main className="p-8 py-10 xl:px-20">
+      <h1 className='flex uppercase tracking-widest justify-center mb-10'><span className='flex items-center text-lg bg-slate-100/90 rounded overflow-hidden shadow'><span className='flex px-3 text-xs opacity-100'>Workspaces</span> <span className='text-white p-3 py-1 flex bg-[#2980b9]'>{workspaces && workspaces.workspacecount}</span></span></h1>
         <div className="flex flex-wrap gap-1 justify-center">
         {filteredworkspaces && filteredworkspaces.length > 0 && filteredworkspaces.map(function (workspace, i) {
             return <Workspace key={workspace.sha} workspace={workspace} />
