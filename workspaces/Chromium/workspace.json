@@ -22,7 +22,7 @@
     "amd64",
     "arm64"
   ],
-  "compatability": [
+  "compatibility": [
     "1.13.x"
   ],
   "uncompressed_size": "2.17 GB"
