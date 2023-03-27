@@ -18,6 +18,7 @@ for BRANCH in $(git branch --remotes --format '%(refname:lstrip=3)' | grep -Ev '
     cp -a process/. public/ # Have to run it again because the deploy wipes the file and folders out
     rm -rf process
     mv public base/$BRANCH
+    cp base/$BRANCH/favicon.ico base/favicon.ico
 done
 
 mv base public
