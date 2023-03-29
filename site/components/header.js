@@ -16,6 +16,7 @@ export default function Header({ searchText, changeSearch }) {
   }
   const listUrl = process.env.listUrl;
   const router = useRouter();
+  const getLink = (path) => `${router.basePath}${path}`;
 
   return (
     <header className="relative font-light overflow-hidden bg-gradient-to-tr from-[#162d48] to-[#2980b9] p-8 xl:px-32 text-white gap-5 md:gap-0 flex flex-wrap justify-center items-center">
@@ -44,7 +45,7 @@ export default function Header({ searchText, changeSearch }) {
         </div>
       </div>
       <nav className='relative z-10 mx-12'>
-        <Link href="/" className={'p-4 inline-block rounded-full border border-solid' + (router.pathname == "/" ? ' border-white/30' : ' border-transparent')}>Library</Link>
+        <a href={getLink("/")} className={'p-4 inline-block rounded-full border border-solid' + (router.pathname == "/" ? ' border-white/30' : ' border-transparent')}>Library</a>
         <Link href="/new/" className={'p-4 inline-block rounded-full border border-solid' + (router.pathname.startsWith("/new") ? ' bg-black/10 border-white/30' : ' border-transparent')}>New</Link>
       </nav>
       <div className="grow flex justify-center relative z-10">
