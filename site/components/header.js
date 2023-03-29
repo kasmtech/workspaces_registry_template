@@ -45,7 +45,7 @@ export default function Header({ searchText, changeSearch }) {
       </div>
       <nav className='relative z-10 mx-12'>
         <a href="/" className={'p-4 inline-block rounded-full border border-solid' + (router.pathname == "/" ? ' border-white/30' : ' border-transparent')}>Library</a>
-        <Link href="/new" className={'p-4 inline-block rounded-full border border-solid' + (router.pathname.startsWith("/new") ? ' bg-black/10 border-white/30' : ' border-transparent')}>New</Link>
+        <Link href="/new/" className={'p-4 inline-block rounded-full border border-solid' + (router.pathname.startsWith("/new") ? ' bg-black/10 border-white/30' : ' border-transparent')}>New</Link>
       </nav>
       <div className="grow flex justify-center relative z-10">
         <div className='bg-black/10 shadow border border-1 border-white/30 rounded flex w-full max-w-md'>
