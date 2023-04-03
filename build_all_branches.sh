@@ -17,9 +17,11 @@ for BRANCH in $(git branch --remotes --format '%(refname:lstrip=3)' | grep -Ev '
     git checkout $BRANCH
     node processing
     cp -a public/. process
+    sed -i "s/1.0/$SANITIZED_BRANCH/" site/next.config.js
     npm run deploy --prefix site
     cp -a process/. public/ # Have to run it again because the deploy wipes the file and folders out
     rm -rf process
+    sed -i "s/$SANITIZED_BRANCH/1.0/" site/next.config.js # Set it back to 1.0 so it can be changed again on the next loop
     mv public base/$SANITIZED_BRANCH
     cp base/$SANITIZED_BRANCH/favicon.ico base/favicon.ico
 done

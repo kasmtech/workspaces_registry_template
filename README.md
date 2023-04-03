@@ -17,7 +17,7 @@ We have tried to make it as simple as possible for people to create their own re
     * icon - The image to display for your registry. You can upload an image to `/site/public/` and reference that by https://domain.com/1.0/image.png or if you aren't using a {sub}domain by referencing it from https://username.github.io/repositoryname/1.0/image.png where image.png is the name of the image you uploaded.
     * listUrl - The link to the root of your site. For example https://username.github.io/repositoryname/ it should always include a trailing slash.
     * contactUrl - A link users can use to contact you on.
-If you are using a domain or a subdomain, your basePath will just be the current version number `basePath: '/1.0',`, otherwise change the value to include what you chose for the repository name in step 2 `basePath: '/repositoryname/1.0',`.
+If you are using a domain or a subdomain, your basePath will just be `basePath: '/1.0',`, otherwise change the value to include what you chose for the repository name in step 2 `basePath: '/repositoryname/1.0',`. the `1.0` will be replaced with the branch name automatically, so you should always keep it as 1.0.
 1. Upload your workspaces to the /workspaces folder
 1. Go to Settings then Pages and select Branch - gh-pages and click Save
 1. Check progress in Actions
