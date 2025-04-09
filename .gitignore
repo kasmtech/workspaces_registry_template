@@ -1,12 +1,14 @@
 # build output
 dist
 public
+!site/public
+site/public/icons
+site/public/list.json
 .next
 target
 packages/next/wasm/@next
 out
-site/public/icons
-site/public/list.json
+private
 
 # dependencies
 node_modules
