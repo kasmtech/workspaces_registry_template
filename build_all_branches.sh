@@ -15,10 +15,11 @@ echo "$(git branch --remotes --format '%(refname:lstrip=3)' | grep -Ev '^(HEAD|d
 for BRANCH in $(git branch --remotes --format '%(refname:lstrip=3)' | grep -Ev '^(HEAD|develop|gh-pages)$'); do
     SANITIZED_BRANCH="$(echo $BRANCH | sed 's/\//_/g')"
     echo "$SANITIZED_BRANCH" >> base/versions.txt
-    git checkout $BRANCH
+    git checkout --force $BRANCH
     node processing
     cp -a public/. process
     sed -i "s/1.0/$SANITIZED_BRANCH/" site/next.config.js
+    npm install --quiet --prefix site
     npm run deploy --prefix site
     cp -a process/. public/ # Have to run it again because the deploy wipes the file and folders out
     rm -rf process
