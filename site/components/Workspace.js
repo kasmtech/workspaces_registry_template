@@ -9,13 +9,13 @@ function Workspace({ Component, pageProps, workspace }) {
             query: { workspace: btoa(workspace.friendly_name)}
         })
     }
-    
+
     return (
         <div onClick={() => viewexample(workspace)} className="w-[245px] h-[88px] transition-all relative cursor-pointer group flex p-2 items-center justify-center bg-slate-100/90 shadow rounded hover:shadow-xl hover:bg-gradient-to-r hover:from-[#162d48] hover:to-[#2980b9] hover:text-white">
             <div className="w-full h-full">
                 <div className="show-grid flex h-full items-center">
                     <div className="kasmcard-img flex h-full mx-4 items-center justify-center">
-                        <img className="w-[50px] max-h-[66px]" src={ 'icons/' + workspace.image_src} />
+                        <img className="w-[50px] max-h-[66px]" src={`${router.basePath}/icons/${workspace.image_src}`} />
                     </div>
                     <div className="kasmcard-detail settingPad">
                         <h5 className="text-base">{ workspace.friendly_name }</h5>
