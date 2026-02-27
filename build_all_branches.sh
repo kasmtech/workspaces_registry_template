@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Unshallow if needed (Cloudflare Pages uses shallow clones)
+git fetch --unshallow 2>/dev/null || true
+
 DEFAULT=$(git remote show origin | sed -n '/HEAD branch/s/.*: //p')
 
 mkdir base
@@ -7,13 +10,12 @@ cat > base/index.html << EOF
 <meta http-equiv="refresh" content="0; url=./$DEFAULT/">
 EOF
 touch base/.nojekyll
-echo "kasmregistry.d3vn0mi.com" > base/CNAME
 
 # Generating documentation for each other branch in a subdirectory
 echo "All branches:"
 git fetch --all
-echo "$(git branch --remotes --format '%(refname:lstrip=3)' | grep -Ev '^(HEAD|develop|gh-pages)$')"
-for BRANCH in $(git branch --remotes --format '%(refname:lstrip=3)' | grep -Ev '^(HEAD|develop|gh-pages)$'); do
+echo "$(git branch --remotes --format '%(refname:lstrip=3)' | grep -Ev '^(HEAD|develop|gh-pages|claude/)$')"
+for BRANCH in $(git branch --remotes --format '%(refname:lstrip=3)' | grep -Ev '^(HEAD|develop|gh-pages|claude/)$'); do
     SANITIZED_BRANCH="$(echo $BRANCH | sed 's/\//_/g')"
     echo "$SANITIZED_BRANCH" >> base/versions.txt
     git checkout --force $BRANCH
