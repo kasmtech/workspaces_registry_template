@@ -7,6 +7,7 @@ cat > base/index.html << EOF
 <meta http-equiv="refresh" content="0; url=./$DEFAULT/">
 EOF
 touch base/.nojekyll
+echo "kasmregistry.d3vn0mi.com" > base/CNAME
 
 # Generating documentation for each other branch in a subdirectory
 echo "All branches:"
