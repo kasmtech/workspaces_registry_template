@@ -1,3 +1,4 @@
 1.0
 1.1
+bugfix_KASM-8472-redirect-workspaces_registry_template-issues-to-central-issue-tracker
 feature_dependency_update
