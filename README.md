@@ -335,3 +335,8 @@ If you are the one doing the searching, click on the **site** folder, then click
 ![search-600](https://user-images.githubusercontent.com/5698566/230614274-2976b4d7-074f-4e6d-9e58-e4d2512a3d2a.gif)
 
 KASM-REGISTRY-DISCOVERY-IDENTIFIER
+
+
+## Reporting Issues
+
+To report any issues for this repository, please use our central issue tracker: **[Kasm Workspaces Issue Tracker](https://github.com/kasmtech/workspaces-issues/issues)**
